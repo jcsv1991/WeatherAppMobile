@@ -1,6 +1,7 @@
 // src/components/HourlyForecast.js
 import React from 'react';
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { Card } from 'react-native-paper';
 
 const HourlyForecast = ({ hourly, units }) => {
   const tempUnit = units === 'metric' ? '°C' : '°F';
@@ -9,26 +10,52 @@ const HourlyForecast = ({ hourly, units }) => {
   const hourlyData = hourly.slice(0, 8);
 
   return (
-    <Box display="flex" justifyContent="center" mt={2}>
+    <View style={styles.container}>
       {hourlyData.map((hour, index) => (
-        <Card key={index} sx={{ minWidth: 100, textAlign: 'center', margin: 1 }}>
-          <CardContent>
-            <Typography variant="h6">
-              {new Date(hour.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            </Typography>
-            <Typography variant="body1">
-              Temp: {hour.main.temp}{tempUnit}
-            </Typography>
-            <Typography variant="body2">{hour.weather[0].description}</Typography>
-            <img
-              src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}.png`}
-              alt="weather icon"
-            />
-          </CardContent>
+        <Card key={index} style={styles.card}>
+          <Text style={styles.time}>
+            {new Date(hour.dt * 1000).toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
+          </Text>
+          <Text>
+            Temp: {hour.main.temp}
+            {tempUnit}
+          </Text>
+          <Text>{hour.weather[0].description}</Text>
+          <Image
+            source={{
+              uri: `https://openweathermap.org/img/wn/${hour.weather[0].icon}.png`,
+            }}
+            style={styles.icon}
+          />
         </Card>
       ))}
-    </Box>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 10,
+    flexWrap: 'wrap',
+  },
+  card: {
+    width: 100,
+    margin: 5,
+    padding: 10,
+    alignItems: 'center',
+  },
+  time: {
+    fontWeight: 'bold',
+  },
+  icon: {
+    width: 50,
+    height: 50,
+  },
+});
 
 export default HourlyForecast;

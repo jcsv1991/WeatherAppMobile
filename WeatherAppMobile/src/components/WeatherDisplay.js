@@ -1,6 +1,7 @@
 // src/components/WeatherDisplay.js
 import React from 'react';
-import { Box, Typography, Card, CardContent } from '@mui/material';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { Card } from 'react-native-paper';
 
 const WeatherDisplay = ({ weather, city, countryCode, units }) => {
   if (!weather) return null;
@@ -8,25 +9,42 @@ const WeatherDisplay = ({ weather, city, countryCode, units }) => {
   const tempUnit = units === 'metric' ? '°C' : '°F';
 
   return (
-    <Box mt={3} textAlign="center" display="flex" justifyContent="center">
-      <Card sx={{ maxWidth: 345, textAlign: 'center' }}> {/* Card around the content */}
-        <CardContent>
-          <Typography variant="h4">
-            {city}, {countryCode}
-          </Typography>
-          <Typography variant="h6">{weather.weather[0].description}</Typography>
-          <Typography variant="h5">
-            Temperature: {weather.main.temp}{tempUnit}
-          </Typography>
-          <img
-            src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
-            alt="weather icon"
-            style={{ marginTop: 16 }}
-          />
-        </CardContent>
+    <View style={styles.container}>
+      <Card style={styles.card}>
+        <Text style={styles.city}>
+          {city}, {countryCode}
+        </Text>
+        <Text>{weather.weather[0].description}</Text>
+        <Text>
+          Temperature: {weather.main.temp}
+          {tempUnit}
+        </Text>
+        <Image
+          source={{ uri: `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` }}
+          style={styles.icon}
+        />
       </Card>
-    </Box>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  card: {
+    padding: 20,
+    alignItems: 'center',
+  },
+  city: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  icon: {
+    width: 100,
+    height: 100,
+  },
+});
 
 export default WeatherDisplay;

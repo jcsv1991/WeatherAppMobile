@@ -1,12 +1,20 @@
 // src/components/ErrorHandling.js
 import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 const ErrorHandling = ({ error }) => {
   return (
-    <div>
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-    </div>
+    <View>
+      {error && <Text style={styles.errorText}>Error: {error}</Text>}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  errorText: {
+    color: 'red',
+    marginTop: 10,
+  },
+});
 
 export default ErrorHandling;
