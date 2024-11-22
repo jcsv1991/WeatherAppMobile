@@ -14,8 +14,8 @@ const WeatherDisplay = ({ weather, city, countryCode, units }) => {
         <Text style={styles.city}>
           {city}, {countryCode}
         </Text>
-        <Text>{weather.weather[0].description}</Text>
-        <Text>
+        <Text style={styles.description}>{weather.weather[0].description}</Text>
+        <Text style={styles.temperature}>
           Temperature: {weather.main.temp}
           {tempUnit}
         </Text>
@@ -36,14 +36,24 @@ const styles = StyleSheet.create({
   card: {
     padding: 20,
     alignItems: 'center',
+    width: '90%',
   },
   city: {
     fontSize: 24,
     fontWeight: 'bold',
   },
+  description: {
+    fontSize: 18,
+    marginVertical: 5,
+    textTransform: 'capitalize',
+  },
+  temperature: {
+    fontSize: 20,
+  },
   icon: {
     width: 100,
     height: 100,
+    marginTop: 10,
   },
 });
 

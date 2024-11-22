@@ -1,11 +1,11 @@
 // src/components/SearchBar.js
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 import axios from 'axios';
 
 const GEOCODING_URL = 'https://api.openweathermap.org/geo/1.0/direct';
-const API_KEY = '9c254e7ed6ff0c89bf7252f6068a5bd2';
+const API_KEY = '9c254e7ed6ff0c89bf7252f6068a5bd2'; 
 
 const SearchBar = ({ setCity, setCountryCode, fetchWeather, setError, setWeatherData }) => {
   const [input, setInput] = useState('');
@@ -61,6 +61,7 @@ const SearchBar = ({ setCity, setCountryCode, fetchWeather, setError, setWeather
         data={suggestions}
         defaultValue={input}
         onChangeText={handleInputChange}
+        placeholder="City"
         flatListProps={{
           keyExtractor: (item) => item.label,
           renderItem: ({ item }) => (
@@ -93,15 +94,18 @@ const styles = StyleSheet.create({
     borderColor: '#666',
     borderWidth: 1,
     padding: 5,
+    borderRadius: 5,
   },
   listContainer: {
     width: '80%',
+    maxHeight: 150,
   },
   button: {
     backgroundColor: '#2196F3',
     paddingHorizontal: 20,
     paddingVertical: 10,
     marginTop: 10,
+    borderRadius: 5,
   },
   buttonText: {
     color: '#fff',

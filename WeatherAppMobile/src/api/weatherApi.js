@@ -2,8 +2,8 @@
 // src/api/weatherApi.js
 import axios from 'axios';
 
-const API_KEY = '9c254e7ed6ff0c89bf7252f6068a5bd2'; // Replace with your actual API key
-const GEOCODING_URL = 'http://api.openweathermap.org/geo/1.0/direct';
+const API_KEY = '9c254e7ed6ff0c89bf7252f6068a5bd2';
+const GEOCODING_URL = 'https://api.openweathermap.org/geo/1.0/direct';
 const FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast'; // 5 Day / 3 Hour Forecast API
 
 export const getWeather = async (city, countryCode, units = 'metric') => {

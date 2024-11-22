@@ -13,15 +13,15 @@ const ForecastDisplay = ({ forecast, units }) => {
       {forecastDays.map((day, index) => (
         <Card key={index} style={styles.card}>
           <Text style={styles.date}>{new Date(day.dt * 1000).toLocaleDateString()}</Text>
-          <Text>
-            Temp: {day.main.temp}
-            {tempUnit}
-          </Text>
-          <Text>{day.weather[0].description}</Text>
           <Image
             source={{ uri: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png` }}
             style={styles.icon}
           />
+          <Text style={styles.temp}>
+            {day.main.temp}
+            {tempUnit}
+          </Text>
+          <Text style={styles.description}>{day.weather[0].description}</Text>
         </Card>
       ))}
     </View>
@@ -36,17 +36,26 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   card: {
-    width: 100,
+    width: 120,
     margin: 5,
     padding: 10,
     alignItems: 'center',
   },
   date: {
     fontWeight: 'bold',
+    marginBottom: 5,
   },
   icon: {
     width: 50,
     height: 50,
+  },
+  temp: {
+    fontSize: 16,
+    marginVertical: 5,
+  },
+  description: {
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
 

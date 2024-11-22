@@ -1,6 +1,6 @@
 // src/components/Weather.js
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import { getWeather } from '../api/weatherApi';
 import SearchBar from './SearchBar';
@@ -27,12 +27,14 @@ const Weather = () => {
         <Button
           mode={units === 'metric' ? 'contained' : 'outlined'}
           onPress={() => handleUnitChange('metric')}
+          style={styles.button}
         >
           Celsius
         </Button>
         <Button
           mode={units === 'imperial' ? 'contained' : 'outlined'}
           onPress={() => handleUnitChange('imperial')}
+          style={styles.button}
         >
           Fahrenheit
         </Button>
@@ -41,12 +43,14 @@ const Weather = () => {
         <Button
           mode={forecastType === 'hourly' ? 'contained' : 'outlined'}
           onPress={() => setForecastType('hourly')}
+          style={styles.button}
         >
           24-Hour Forecast
         </Button>
         <Button
           mode={forecastType === 'daily' ? 'contained' : 'outlined'}
           onPress={() => setForecastType('daily')}
+          style={styles.button}
         >
           5-Day Forecast
         </Button>
@@ -81,6 +85,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     marginTop: 30,
+    flex: 1,
+    backgroundColor: '#fff', // Set a default background color
   },
   title: {
     fontSize: 24,
@@ -90,6 +96,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10,
+  },
+  button: {
+    marginHorizontal: 5,
   },
 });
 
