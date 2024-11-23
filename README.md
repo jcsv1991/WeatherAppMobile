@@ -83,7 +83,7 @@ With all dependencies installed and the API key configured, you can now run the 
 1. **Start the Expo Development Server**
 
    ```bash
-   expo start
+   npx expo start
    ```
 
    This will start the Expo CLI and open a browser window with options.
